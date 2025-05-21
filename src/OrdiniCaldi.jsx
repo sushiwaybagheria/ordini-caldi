@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { doc, setDoc, getDoc, collection, onSnapshot, deleteDoc } from "firebase/firestore";
 import { db } from "./firebase";
-
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase";
 
 
 
@@ -143,6 +144,27 @@ const stampaOrdine = (ordine) => {
 useEffect(() => {
 
     fetchOrdini();
+
+
+
+
+// ordini caldi 
+
+// dentro useEffect, subito dopo fetchOrdini();
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log("✅ Utente autenticato:", user.email);
+  } else {
+    console.warn("⚠️ Nessun utente autenticato!");
+  }
+});
+
+
+
+
+
+
+
 
     const unsubscribeMemo = onSnapshot(collection(db, "memo"), (snapshot) => {
 
