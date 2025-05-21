@@ -17,7 +17,7 @@ export const db = getFirestore(app);
 export const auth = getAuth(app);
 
 // 🔐 Login automatico
-signInWithEmailAndPassword(auth, "info@sushiway,it", "forzafabio")
+signInWithEmailAndPassword(auth, "info@sushiway.it", "forzafabio")
   .then(user => console.log("✅ Login OK", user.user.email))
   .catch(err => console.error("❌ Login fallito:", err.message));
 
